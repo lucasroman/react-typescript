@@ -28,7 +28,7 @@ function SearchForm({search, setSearch, setQuery}: SearchFormProps): React.React
 
     return (
         <form onSubmit={handleSearch}>
-            <label>Search: </label>
+            <label>Search</label>
             <input type="text" onChange={(e) => setSearch(e.target.value)}
                 value={search} />
             <button type="submit"> &#128270;</button>
