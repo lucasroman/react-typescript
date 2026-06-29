@@ -23,7 +23,7 @@ async function fetchData<T>(url: string): Promise<T> {
 function SearchForm({search, setSearch, setQuery}: SearchFormProps): React.ReactNode {
     function handleSearch(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        setQuery(search);
+        setQuery(search); // Trigger the useEffect because query changed
     }
 
     return (
