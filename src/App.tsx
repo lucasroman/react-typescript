@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div>
-      <button onClick={() => setIsDark(!isDark)}>
+      <button className="button-theme" onClick={() => setIsDark(!isDark)}>
         {/* Shows sun or moon icon */}
         {isDark ?
           <i className="em em-crescent_moon" aria-role="presentation"
