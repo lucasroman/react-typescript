@@ -28,8 +28,8 @@ function SearchForm({search, setSearch, setQuery}: SearchFormProps): React.React
 
     return (
         <form onSubmit={handleSearch}>
-            <label>Search</label>
-            <input type="text" onChange={(e) => setSearch(e.target.value)}
+            <label htmlFor="movie">Search</label>
+            <input id="movie" type="text" onChange={(e) => setSearch(e.target.value)}
                 value={search} />
             <button type="submit"> &#128270;</button>
         </form>
