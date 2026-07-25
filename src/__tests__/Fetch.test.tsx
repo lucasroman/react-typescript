@@ -1,6 +1,10 @@
 import '@testing-library/jest-dom'; // Ins't just for Jes, include Vite matchers too.
 import { fetchData } from '../components/Fetch';
 
+// Guarantee that each test runs at least one assertion
+beforeEach(() => {
+    expect.hasAssertions();
+});
 
 type Movie = {
     Title: string;
@@ -27,5 +31,7 @@ describe('Fetching movie', () => {
         await expect(fetchData('http://any-url.com')).rejects.toThrow('Network error');
     })
 
-    test.todo('It can see the data obtained')
+    test.todo('It can see the data obtained', () => {
+
+    });
 });
