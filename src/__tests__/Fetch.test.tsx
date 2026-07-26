@@ -1,24 +1,30 @@
 import '@testing-library/jest-dom'; // Ins't just for Jes, include Vite matchers too.
 import { fetchData } from '../components/Fetch';
-
-// Guarantee that each test runs at least one assertion
-beforeEach(() => {
-    expect.hasAssertions();
-});
+import { beforeAll, beforeEach } from 'vitest';
 
 type Movie = {
     Title: string;
     Year: string;
 }
 
-describe('Fetching movie', () => {
+// Result of movie searched
+let result: Movie | undefined;
 
+// Response of API available for all tests on 'result' variable
+beforeAll(async () => {
+    const query = 'the matrix';
+    const url = `http://www.omdbapi.com/?t=${query}&apikey=${import.meta.env.VITE_API_KEY}`;
+    result = await fetchData<Movie>(url);
+});
+
+// Guarantee that each test runs at least one assertion
+beforeEach(() => {
+    expect.hasAssertions();
+});
+
+describe('Fetching movie', () => {
     // Check that the app is fetching data from API
     test.only('It can fetch data from API about the movie', async () => {
-        const query = 'the matrix';
-        const url = `http://www.omdbapi.com/?t=${query}&apikey=${import.meta.env.VITE_API_KEY}`;
-        const result = await fetchData<Movie>(url);
-
         // Compare just a part of response (toMatchObject) with fixed data
         expect(result).toMatchObject({ Title: 'The Matrix', Year: '1999' });
     });
